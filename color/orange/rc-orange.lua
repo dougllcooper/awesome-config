@@ -25,24 +25,24 @@ redflat.startup:activate()
 
 -- Error handling
 -----------------------------------------------------------------------------------------------------------------------
-require("colorless.ercheck-config") -- load file with error handling
+require("color.orange.ercheck-config") -- load file with error handling
 
 
 -- Setup theme and environment vars
 -----------------------------------------------------------------------------------------------------------------------
-local env = require("color.blue.env-config") -- load file with environment
+local env = require("color.orange.env-config") -- load file with environment
 env:init({ theme = "orange" })
 
 
 -- Layouts setup
 -----------------------------------------------------------------------------------------------------------------------
-local layouts = require("color.blue.layout-config") -- load file with tile layouts setup
+local layouts = require("color.orange.layout-config") -- load file with tile layouts setup
 layouts:init()
 
 
 -- Main menu configuration
 -----------------------------------------------------------------------------------------------------------------------
-local mymenu = require("color.blue.menu-config") -- load file with menu configuration
+local mymenu = require("color.orange.menu-config") -- load file with menu configuration
 mymenu:init({ env = env })
 
 
@@ -58,7 +58,7 @@ local separator = redflat.gauge.separator.vertical()
 local tasklist = {}
 
 -- load list of app name aliases from files and set it as part of tasklist theme
-tasklist.style = { appnames = require("color.blue.alias-config")}
+tasklist.style = { appnames = require("color.orange.alias-config")}
 
 tasklist.buttons = awful.util.table.join(
 	awful.button({}, 1, redflat.widget.tasklist.action.select),
@@ -144,7 +144,7 @@ kbindicator.buttons = awful.util.table.join(
 -- Mail widget
 --------------------------------------------------------------------------------
 -- mail settings template
-local my_mails = require("color.blue.mail-example")
+local my_mails = require("color.orange.mail-example")
 
 -- safe load private mail settings
 pcall(function() my_mails = require("private.mail-config") end)
@@ -173,7 +173,7 @@ sysmon.widget.battery = redflat.widget.sysmon(
 -- network speed
 sysmon.widget.network = redflat.widget.net(
 	{
-		interface = "wlp60s0",
+		interface = "wlp3s0",
 		speed = { up = 6 * 1024^2, down = 6 * 1024^2 },
 		autoscale = false
 	},
@@ -269,7 +269,7 @@ awful.screen.connect_for_each_screen(
 		}
 	end
 )
-
+--[[
 -- Desktop widgets
 -----------------------------------------------------------------------------------------------------------------------
 if not lock.desktop then
@@ -279,43 +279,43 @@ if not lock.desktop then
 		buttons = awful.util.table.join(awful.button({}, 3, function () mymenu.mainmenu:toggle() end))
 	})
 end
-
+--]]
 
 -- Active screen edges
 -----------------------------------------------------------------------------------------------------------------------
-local edges = require("color.blue.edges-config") -- load file with edges configuration
+local edges = require("color.orange.edges-config") -- load file with edges configuration
 edges:init()
 
 
 -- Key bindings
 -----------------------------------------------------------------------------------------------------------------------
-local appkeys = require("color.blue.appkeys-config") -- load file with application keys sheetb
+local appkeys = require("color.orange.appkeys-config") -- load file with application keys sheetb
 
-local hotkeys = require("color.blue.keys-config") -- load file with hotkeys configuration
+local hotkeys = require("color.orange.keys-config") -- load file with hotkeys configuration
 hotkeys:init({ env = env, menu = mymenu.mainmenu, appkeys = appkeys, volume = volume.widget })
 
 
 -- Rules
 -----------------------------------------------------------------------------------------------------------------------
-local rules = require("color.blue.rules-config") -- load file with rules configuration
+local rules = require("color.orange.rules-config") -- load file with rules configuration
 rules:init({ hotkeys = hotkeys})
 
 
 -- Titlebar setup
 -----------------------------------------------------------------------------------------------------------------------
-local titlebar = require("colorless.titlebar-config") -- load file with titlebar configuration
+local titlebar = require("color.orange.titlebar-config") -- load file with titlebar configuration
 titlebar:init()
 
 
 -- Base signal set for awesome wm
 -----------------------------------------------------------------------------------------------------------------------
-local signals = require("colorless.signals-config") -- load file with signals configuration
+local signals = require("color.orange.signals-config") -- load file with signals configuration
 signals:init({ env = env })
 
 
 -- Autostart user applications
 -----------------------------------------------------------------------------------------------------------------------
 if redflat.startup.is_startup then
-	local autostart = require("color.blue.autostart-config") -- load file with autostart application list
+	local autostart = require("color.orange.autostart-config") -- load file with autostart application list
 	autostart.run()
 end
